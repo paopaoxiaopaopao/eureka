@@ -1,0 +1,18 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: eureka-master
+    prefer-ip-address: false
+    instance-id: ${eureka.instance.hostname}(${spring.cloud.client.ip-address}):${server.port}
+  server:
+    renewal-percent-threshold: 0.8
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 10000
+    response-cache-update-interval-ms: 5000
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-slaver:8762/eureka/
+
